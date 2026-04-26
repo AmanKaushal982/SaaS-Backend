@@ -1,5 +1,5 @@
 import validator from 'validator';
-const validate = (email, password) => {
+const validateRegister = (email, password) => {
     const errors = {};
     if (!email || !password) {
         errors.email = 'email is requried';
@@ -25,4 +25,18 @@ const validate = (email, password) => {
         isValid: Object.keys(errors).length === 0,
     }
 };
+const validateLogin = (email, password) => {
+    const errors = {};
+    if (!email || !passowrd) {
+        errors.email = 'email is required';
+        errors.password = 'password is required';
+    }
+    else if (!validator.isEmail(email)) {
+        errors.email = 'enter a valid email address';
+    }
+    return {
+        errors,
+        isValid: Object.keys(errors).length === 0,
+    }
+}
 export default validate;
