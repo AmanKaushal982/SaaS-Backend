@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import User from '../model/user.model.js';
 import validate from '../utils/validate.js';
 
-const generateToken = (userId) => {
+export const generateToken = (userId) => {
     return jwt.sign(
         { id: userId },
         process.env.JWT_SECRET,
@@ -12,7 +12,7 @@ const generateToken = (userId) => {
 };
 
 // REGISTER CONROLLER
-const register = async (req, res) => {
+export const register = async (req, res) => {
     try {
         const { email, password, subscribe } = req.body;
         // sabse pehle format validation 
@@ -58,7 +58,7 @@ const register = async (req, res) => {
 };
 
 // LOGIN CONTROLLER
-const login = async (req, res) => {
+export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const { isValid, errors } = validateLogin(email, password);
@@ -104,7 +104,7 @@ const login = async (req, res) => {
 };
 
 // OAUTH CONTROLLER
-const Oauth = async (req, res) => {
+export const oauthLogin = async (req, res) => {
     try {
         const { email, providerId, authProvider } = req.body;
         if (!email || !providerId || !authProvider) {
@@ -140,7 +140,7 @@ const Oauth = async (req, res) => {
 };
 
 // LOGOUT CONTROLLER
-const logout = async (req, res) => {
+export const logout = async (req, res) => {
     res.clearCookie('token');
     res.status(200).json({
         message: 'Logged out Successfully'
