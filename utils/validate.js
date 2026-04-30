@@ -1,5 +1,5 @@
 import validator from 'validator';
-const validateRegister = (email, password) => {
+export const validateRegister = (email, password) => {
     const errors = {};
     if (!email || !password) {
         errors.email = 'email is requried';
@@ -11,7 +11,7 @@ const validateRegister = (email, password) => {
     if (!validator.isLength(password, { min: 8 })) {
         errors.password = "Password must be at least 8 characters long.";
     }
-    if (!/[A—Z]/.test(password)) {
+    if (!/[A-Z]/.test(password)) {
         errors.password = 'Password must contain at least one uppercase letter.'
     }
     if (!/[0-9]/.test(password)) {
@@ -25,9 +25,9 @@ const validateRegister = (email, password) => {
         isValid: Object.keys(errors).length === 0,
     }
 };
-const validateLogin = (email, password) => {
+export const validateLogin = (email, password) => {
     const errors = {};
-    if (!email || !passowrd) {
+    if (!email || !password) {
         errors.email = 'email is required';
         errors.password = 'password is required';
     }
@@ -39,4 +39,3 @@ const validateLogin = (email, password) => {
         isValid: Object.keys(errors).length === 0,
     }
 }
-export default validate;

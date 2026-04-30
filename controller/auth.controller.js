@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 import User from '../model/user.model.js';
-import validate from '../utils/validate.js';
+import { validateRegister, validateLogin } from '../utils/validate.js';
 
-export const generateToken = (userId) => {
+export const generatetoken = (userId) => {
     return jwt.sign(
         { id: userId },
         process.env.JWT_SECRET,
@@ -37,7 +37,7 @@ export const register = async (req, res) => {
             authProvider: 'local',
         })
         // now create token
-        const token = generateToken(user._id);
+        const token = generatetoken(user._id);
         res.cookie('token', token, {
             httpOnly: true,
             secure: false,
