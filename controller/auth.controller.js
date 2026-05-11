@@ -139,6 +139,19 @@ export const oauthLogin = async (req, res) => {
     }
 };
 
+// getMe CONTROLLER
+export const getMe = async (req, res) => {
+    try {
+        res.status(200).json({
+            success: true,
+            user: req.user
+        });
+    }
+    catch (err) {
+        res.status(500).json({ message: 'server error' });
+    }
+};
+
 // LOGOUT CONTROLLER
 export const logout = async (req, res) => {
     res.clearCookie('token');
